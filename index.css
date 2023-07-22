@@ -1,0 +1,64 @@
+
+        /* Styles pour la page principale */
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styles pour l'en-tête */
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Styles pour les boutons */
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            padding: 10px;
+            margin: 10px auto;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles pour la liste de contacts */
+        .contactList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contactList li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .contactList li img {
+            float: left;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        /* Styles pour le pied de page */
+        .footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
