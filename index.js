@@ -1,37 +1,44 @@
-document.addEventListener('deviceready', rechercherContacts);
 
-function rechercherContacts() {
-    const options = new ContactFindOptions();
-    //options.filter = 'resp';
-    options.multiple = true;
-    options.hasPhoneNumber = true;
-    let fields = ['name'];
+function ajouterTache() {
+    const tache = document.getElementById('tache');
+    const taskList = document.getElementById('taskList');
 
-    navigator.contacts.find(fields, afficherContacts, gererErreur, options);
-
-}
-
-function afficherContacts(contacts) {
-    let code = '';
-
-    for (let i = 0; i < contacts.length; i++) {
-        code += `
-            <li>
-                <a href="#">
-                    <img src="${contacts[i].photos ? contacts[i].photos[0].value : 'img/md-contact-16.png'}">
-                    <hi>${contacts[i].displayName}</hi>   
-                    <p>${contacts[i].phoneNumbers[0].value}</p>
-                </a>
-            </li>
-        `;   
+    if (!tache.value) {
+      tache.focus();
+      return;
     }
 
-    const contactList = document.getElementById('contactList');
-    contactList.innerHTML = code;
-    $(contactList).listview('refresh');
-}
+    const newTask = document.createElement('li');
+    newTask.innerText = tache.value;
 
-function gererErreur(error) {
-    console.log("Erreur : ");
-    console.log(error);
-}
+    $(newTask).on('swiperight', function () {
+      if (this.classList.contains('termine')) {
+        this.classList.remove('termine');
+        $('#taskList').append(this);
+      } else {
+        this.classList.add('termine');
+        $('#taskListTerminees').append(this);
+      }
+      $(this).listview('refresh');
+    });
+
+    $(newTask).on('swipeleft', function () {
+      $(this).hide('slow', function () {
+        this.remove();
+      });
+    });
+
+    taskList.appendChild(newTask);
+    $(taskList).listview('refresh');
+    tache.value = '';
+    tache.focus();
+  }
+
+  function reinitialiserListe() {
+    const taskList = document.getElementById('taskList');
+    const taskListTerminees = document.getElementById('taskListTerminees');
+    taskList.innerHTML = '';
+    taskListTerminees.innerHTML = '';
+    $(taskList).listview('refresh');
+    $(taskListTerminees).listview('refresh');
+  }
